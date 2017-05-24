@@ -202,9 +202,10 @@
             else if (c.label === 'file') {
                 c.on('data', function(data) {
                     // If we're getting a file, create a URL for it.
-                    if (data.constructor === ArrayBuffer) {
-                        var dataView = new Uint8Array(data);
-                        var dataBlob = new Blob([dataView]);
+                    if (data.file.constructor === ArrayBuffer) {
+                        var dataView = new Uint8Array(data.file);
+                        var dataBlob = new Blob([dataView], {type: data.type});
+                        console.log(dataBlob);
                         var url = window.URL.createObjectURL(dataBlob);
                         $('#' + c.peer).find('.messages').append('<div><span class="file">' +
                             c.peer + ' has sent you a <a target="_blank" href="' + url + '">file</a>.</span></div>');
@@ -233,10 +234,13 @@
             box.on('drop', function(e){
                 e.originalEvent.preventDefault();
                 var file = e.originalEvent.dataTransfer.files[0];
+                var name = e.originalEvent.dataTransfer.files[0].name;
+                var type = e.originalEvent.dataTransfer.files[0].type;
+                console.log(file, name);
                 eachActiveConnection(function(c, $c) {
                     if (c.label === 'file') {
-                        c.send(file);
-                        $c.find('.messages').append('<div><span class="file">You sent a file.</span></div>');
+                        c.send({file: file, type: type});
+                        $c.find('.messages').append('<div><span class="file">You sent </span> '+  name + ' </div>');
                     }
                 });
             });
