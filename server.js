@@ -56,24 +56,6 @@ server.on('disconnect', function(id) {
 
 });
 
-/*socket.on('change', function (op) {
- if (op.origin == '+input' || op.origin == 'paste' || op.origin == '+delete') {
- socket.broadcast.to(socket.room).emit('change', op);
-
- }
-
- });
- socket.on('refresh', function (body_) {
- if (people[socket.id].inroom !== null || people[socket.id].inroom !== "undefined") {
- var room = people[socket.id].inroom;
-
- room.body = body_;
- }
-
-
-
- });*/
-
 
 
 
