@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Language" content="en-us">
     <link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
     <link rel="stylesheet" href="https://codemirror.net/theme/ambiance.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://codemirror.net/lib/codemirror.js"></script>
     <script src="https://codemirror.net/addon/mode/overlay.js"></script>
     <script src="https://codemirror.net/mode/xml/xml.js"></script>
@@ -21,6 +22,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/selection/active-line.js"></script>
     <link href="css/fancy.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
 
     <script src="js/peer.js"></script>
     <script>
@@ -57,6 +60,7 @@
             $('#my-id').text(id);
         });
             peer.on('call', function(call){
+
                 call.answer(window.localStream);
                 step3(call);
             });
@@ -92,7 +96,9 @@
 
                 }
                 connectedPeers[requestedPeer] = 1;
+
                 var call = peer.call($('#callto-id').val(), window.localStream);
+
                 step3(call);
             });
             $('#end-call').click(function(){
@@ -305,22 +311,58 @@
 <body>
 
 
+<div class="container-fluid">
+    <div class="header">
+
+
+        <div class="col-md-6">
+        <h1>Your id: <span id="my-id">...</span> <input type="text" placeholder="Call user id..." id="callto-id">
+            <a href="#" class="pure-button pure-button-success" id="make-call"> Call</a></h1><span id="step3">
+        <h1>Currently in call with <span id="their-id">...</span> <a href="#" class="pure-button pure-button-error" id="end-call"> End call</a></h1></span>
+
+    </div>
+        <div class="col-md-6">
+            <div id="box" style="background: #000; font-size: 16px;padding:40px 30px; text-align: center;color:#fff;">
+                Drag file here to send to active connections.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <video id="my-video" muted="true" autoplay></video>
+                <video id="their-video" autoplay></video>
+                <div>
+                    <div id="connections"><span class="filler">You have not yet
+        made any connections.</span>
+                        <div class="clear"></div></div><form id="send">
+                            <input type="text" id="text" placeholder="Enter message"><input class="btn btn-primary" type="submit" value="Send message">
+                        </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <form id="codeForm">
+                    <textarea title="code" id="code"></textarea>
+                </form>
+            </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 
 
-
+</div>
 
 <div id="actions">
-    <h1 style="text-align: center;">Your id: <span id="my-id">...</span> <span id="step3">
+    <!--<h1 style="text-align: center;">Your id: <span id="my-id">...</span> <span id="step3">
         <p>Currently in call with <span id="their-id">...</span>
         <a href="#" class="pure-button pure-button-error" id="end-call">End call</a></p></span><input type="text" placeholder="Call user id..." id="callto-id">
         <a href="#" class="pure-button pure-button-success" id="make-call">Call</a></h1><!--<button id="close">Terminate all connections</button></h1>-->
-    <video id="my-video" muted="true" autoplay></video>
-    <video id="their-video" autoplay></video>
 
-    <form id="codeForm">
-        <textarea title="code" id="code"></textarea>
-    </form>
+
     <div class="pure-u-1-3">
     <div id="step1">
         <p>Please click `allow` on the top of the screen so we can access your webcam and microphone for calls.</p>
@@ -332,15 +374,13 @@
 </div>
 </div>
 
-<div id="wrap"><div id="connections"><span class="filler">You have not yet
+<!--<div id="wrap"><div id="connections"><span class="filler">You have not yet
         made any connections.</span></div>
     <div class="clear"></div><form id="send">
         <input type="text" id="text" placeholder="Enter message"><input class="btn btn-primary" type="submit" value="Send message">
-    </form></div>
+    </form></div>-->
 
-<div id="box" style="background: #000; font-size: 24px;padding:40px 30px; text-align: center;color:#fff;">
-    Drag file here to send to active connections.
-</div>
+
 
 
 
@@ -354,5 +394,6 @@
 
     <div class="log" style="color:#FF7500;text-shadow:none;padding:15px;background:#eee"><strong>Connection status</strong>:<br></div>
 </div>-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
