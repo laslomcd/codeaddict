@@ -14,7 +14,7 @@ body,html {
 .connection {
     float: left;
     height: 250px;
-    width: 200px;
+    width: 100%;
     overflow: scroll;
     background-color: #fff;
     padding: 10px;
@@ -22,7 +22,7 @@ body,html {
     border: 1px solid #ccc;
 }
 .connection div {
-    margin: 5px 0;
+    //margin: 5px 0;
 }
 .connection.active {
     border-color: #FF7500;
@@ -112,7 +112,7 @@ input:focus {
 
 }
 form {
-    display: inline-block;
+    //display: inline-block;
 }
 #close {
     background-color: #FF7500;
@@ -155,18 +155,13 @@ form {
 }
 
 #my-video {
-    margin-top: 15px;
     width: 280px;
     height: auto;
-    background-color: #eee;
 }
 
 #their-video {
-    width: 380px;
+    width: 280px;
     height: auto;
-    background-color: #eee;
-    position:relative;
-    left:0;
 }
 
 #video-container {
@@ -180,13 +175,19 @@ form {
 #my-id {
     font-weight: bold;
 }
-
+#their-id {
+    font-weight: bold;
+}
 #codeForm{
     //display: block;
-    position:relative;
-    width: calc(100% - 680px );
+    //position:relative;
+    width: 100%;
     //left:0;
-    right:5px;
-    height:100%;
+    //right:5px;
+    //height:700px;
 
 }
+#box{
+    //height:200px;
+}
+.CodeMirror { height: calc(100vh - 100px); min-height: 600px; overflow: scroll;}
